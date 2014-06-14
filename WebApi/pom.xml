@@ -14,7 +14,7 @@
     </properties>
 
     <dependencies>
-        <!-- Tomcat -start [ -->
+        <!-- tomcat -start [ -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
@@ -33,7 +33,7 @@
             <version>${tomcat-version}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- ] Tomcat -end -->
+        <!-- ] tomcat -end -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
