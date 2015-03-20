@@ -1,4 +1,3 @@
-import com.iunet.cglib_proxy.cutter.MyCut;
 import com.iunet.cglib_proxy.proxy.CheckPermissionProxy;
 import com.iunet.cglib_proxy.service.impl.LoginServiceImpl;
 import org.junit.Test;
@@ -18,13 +17,13 @@ public class TestCglibProxy {
     public void testCglibProxy() {
         CheckPermissionProxy proxy = new CheckPermissionProxy();
         LoginServiceImpl loginService = new LoginServiceImpl();
-        MyCut myCut = new MyCut();
-        try {
-            Method method = myCut.getClass().getMethod("cutSomething", String.class);       // 要切入的方法
-            loginService = (LoginServiceImpl) proxy.getInstance(loginService, myCut, method, "单车上的理想");
-            loginService.addLoginLogs();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
+        //MyCut myCut = new MyCut();
+        //try {
+        //    Method method = myCut.getClass().getMethod("cutSomething", String.class);       // 要切入的方法
+        //    loginService = (LoginServiceImpl) proxy.getInstance(loginService, myCut, method, "单车上的理想");
+        //    loginService.addLoginLogs();
+        //} catch (NoSuchMethodException e) {
+        //    e.printStackTrace();
+        //}
     }
 }
