@@ -9,7 +9,7 @@ import java.io.*;
 @SuppressWarnings("serial")
 public class DownloadServlet extends HttpServlet {
 
-	String path = "H:\\haoxiaolei\\Desktop\\Firefox-latest.exe";
+	String path = "F:\\Setup\\装机软件\\maxdos93.zip";
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req, resp);
