@@ -22,7 +22,7 @@ import java.util.Random;
  * @Description:
  * @Author xiaolei-0228@163.com
  * @Date 13-11-17 下午2:37
- * @Copyright: 2013 ihome.com
+ * @Copyright: 2013 ehome.com
  */
 public class ExcelUtil {
     /**

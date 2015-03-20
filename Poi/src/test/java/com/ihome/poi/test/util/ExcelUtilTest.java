@@ -21,7 +21,7 @@ public class ExcelUtilTest {
 
     @Test
     public void createGroupedWorkBook() {
-        String path = "h:/haoxiaolei/Desktop";
+        String path = "C:\\Users\\Administrator\\Desktop";
         String fileName = "result.xls";
         Map<String, Integer> titleMap = new LinkedHashMap<String, Integer>();
         titleMap.put("关键词名称", 5000);
@@ -96,7 +96,7 @@ public class ExcelUtilTest {
         excelBean.setMergerDataMap(dm);
 
         // 纵向合并哪一列
-        excelBean.setTitleIndex("关键词名称");
+        //excelBean.setTitleIndex("关键词名称");
 
         ExcelUtil.createGroupedWorkBook(excelBean);
     }
