@@ -14,14 +14,14 @@
         <url-pattern>/download</url-pattern>
     </servlet-mapping>
 
-    <servlet>
+    <!--<servlet>
         <servlet-name>upload</servlet-name>
         <servlet-class>com.ehome.uploaddownload.servlet.UploadServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>upload</servlet-name>
         <url-pattern>/upload</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
 
 
