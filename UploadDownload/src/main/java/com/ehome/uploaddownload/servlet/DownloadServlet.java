@@ -15,23 +15,31 @@ import java.io.OutputStream;
  */
 public class DownloadServlet extends HttpServlet {
 
-    String path = "G:\\Setup\\装机软件\\maxdos93.zip";
+    String path = "upload\\Monaco.ttf";
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        downloadFile(response);
+        boolean result = false;
+        try {
+            result = downloadFile(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (result) {
 //		this.getServletContext().getRequestDispatcher("/success.jsp").forward(request, response);
-        System.out.println("下载完成!");
+            System.out.println("下载完成!");
+        }
     }
 
     // 下载文件
-    public void downloadFile(HttpServletResponse response) {
-        File file = new File(path);
+    public boolean downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        boolean result = false;
+        File file = new File(request.getServletContext().getRealPath("/") + path);
         if (!file.exists()) {
-            throw new RuntimeException("文件根本就不存在！还下载个啥！！！");
+            throw new Exception("文件根本就不存在！还下载个啥！！！");
         }
         String fileName = file.getName();
         response.setContentType("application/x-msdownload");
@@ -60,6 +68,8 @@ public class DownloadServlet extends HttpServlet {
             }
             // 将写入到客户端的内存的数据,刷新到磁盘
             myout.flush();
+
+            result = true;
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -77,7 +87,8 @@ public class DownloadServlet extends HttpServlet {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
+
+        return result;
     }
 }
