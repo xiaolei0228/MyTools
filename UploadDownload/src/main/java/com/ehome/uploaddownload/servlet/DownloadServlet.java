@@ -34,7 +34,7 @@ public class DownloadServlet extends HttpServlet {
     public boolean downloadFile(HttpServletRequest request, HttpServletResponse response) {
         boolean result = false;
         String requestDownloadFileName = request.getParameter("fileName");
-        String uploadPath = PropertiesFileUtil.getValue("upload.path");
+        String uploadPath = PropertiesFileUtil.getValue("download.path");
         String realPath = uploadPath.startsWith("/") ? request.getServletContext().getRealPath("") : "";
         File file = new File(realPath + uploadPath + "/" + requestDownloadFileName);
         if (file.exists()) {
