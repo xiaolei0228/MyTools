@@ -1,5 +1,7 @@
 package com.ehome.uploaddownload.servlet;
 
+import com.ehome.uploaddownload.util.PropertiesFileUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +34,9 @@ public class DownloadServlet extends HttpServlet {
     public boolean downloadFile(HttpServletRequest request, HttpServletResponse response) {
         boolean result = false;
         String requestDownloadFileName = request.getParameter("fileName");
-        File file = new File(request.getServletContext().getRealPath("/upload") + requestDownloadFileName);
+        String uploadPath = PropertiesFileUtil.getValue("upload.path");
+        String realPath = uploadPath.startsWith("/") ? request.getServletContext().getRealPath("") : "";
+        File file = new File(realPath + uploadPath + "/" + requestDownloadFileName);
         if (file.exists()) {
             String fileName = file.getName();
             response.setContentType("application/x-msdownload");
@@ -81,6 +85,8 @@ public class DownloadServlet extends HttpServlet {
                     e.printStackTrace();
                 }
             }
+        } else {
+            System.out.println("文件不存在，或者路径不正确!");
         }
 
         return result;
