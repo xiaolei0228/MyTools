@@ -22,13 +22,13 @@ public class DownloadServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        downloadFile(request, response);
+        downloadFile(response);
 //		this.getServletContext().getRequestDispatcher("/success.jsp").forward(request, response);
         System.out.println("下载完成!");
     }
 
     // 下载文件
-    public void downloadFile(HttpServletRequest request, HttpServletResponse response) {
+    public void downloadFile(HttpServletResponse response) {
         File file = new File(path);
         if (!file.exists()) {
             throw new RuntimeException("文件根本就不存在！还下载个啥！！！");
