@@ -6,6 +6,6 @@
   </head>
  
   <body>  
-    <a href=download>下载一个文件</a>
+    <a href=download?fileName=MenuMgr_1.2_Setup.exe>下载一个文件</a>
   </body>
 </html>

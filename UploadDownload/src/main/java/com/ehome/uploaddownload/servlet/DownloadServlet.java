@@ -15,19 +15,13 @@ import java.io.OutputStream;
  */
 public class DownloadServlet extends HttpServlet {
 
-    String path = "upload\\Monaco.ttf";
-
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         boolean result = false;
-        try {
-            result = downloadFile(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        result = downloadFile(request, response);
         if (result) {
 //		this.getServletContext().getRequestDispatcher("/success.jsp").forward(request, response);
             System.out.println("下载完成!");
@@ -35,57 +29,57 @@ public class DownloadServlet extends HttpServlet {
     }
 
     // 下载文件
-    public boolean downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public boolean downloadFile(HttpServletRequest request, HttpServletResponse response) {
         boolean result = false;
-        File file = new File(request.getServletContext().getRealPath("/") + path);
-        if (!file.exists()) {
-            throw new Exception("文件根本就不存在！还下载个啥！！！");
-        }
-        String fileName = file.getName();
-        response.setContentType("application/x-msdownload");
-        response.setContentLength((int) file.length());
-        FileInputStream fis = null;
-        BufferedInputStream bis = null;
-        try {
-            // 从response对象中得到输出流,准备下载
-            response.setHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes("gbk"), "iso-8859-1"));
-            response.setHeader("windows-Target", "_blank");
-            // 读出文件到i/o流
-            fis = new FileInputStream(file);
-            bis = new BufferedInputStream(fis);
-
-            byte[] buffer = new byte[5000];// 相当于我们的缓存
-            long readBytes = 0;// 该值用于计算当前实际下载了多少字节
-
-            OutputStream myout = response.getOutputStream();
-
-            // 开始循环下载
-            while (readBytes < file.length()) {
-                int tempBytes = bis.read(buffer, 0, 5000);
-                readBytes += tempBytes;
-                // 将buffer中的数据写到客户端的内存
-                myout.write(buffer, 0, tempBytes);
-            }
-            // 将写入到客户端的内存的数据,刷新到磁盘
-            myout.flush();
-
-            result = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
+        String requestDownloadFileName = request.getParameter("fileName");
+        File file = new File(request.getServletContext().getRealPath("/upload") + requestDownloadFileName);
+        if (file.exists()) {
+            String fileName = file.getName();
+            response.setContentType("application/x-msdownload");
+            response.setContentLength((int) file.length());
+            FileInputStream fis = null;
+            BufferedInputStream bis = null;
             try {
-                if (fis != null) {
-                    fis.close();
+                // 从response对象中得到输出流,准备下载
+                response.setHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes("gbk"), "iso-8859-1"));
+                response.setHeader("windows-Target", "_blank");
+                // 读出文件到i/o流
+                fis = new FileInputStream(file);
+                bis = new BufferedInputStream(fis);
+
+                byte[] buffer = new byte[5000];// 相当于我们的缓存
+                long readBytes = 0;// 该值用于计算当前实际下载了多少字节
+
+                OutputStream myout = response.getOutputStream();
+
+                // 开始循环下载
+                while (readBytes < file.length()) {
+                    int tempBytes = bis.read(buffer, 0, 5000);
+                    readBytes += tempBytes;
+                    // 将buffer中的数据写到客户端的内存
+                    myout.write(buffer, 0, tempBytes);
                 }
+                // 将写入到客户端的内存的数据,刷新到磁盘
+                myout.flush();
+
+                result = true;
             } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (bis != null) {
-                    bis.close();
+                e.getMessage();
+            } finally {
+                try {
+                    if (fis != null) {
+                        fis.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    if (bis != null) {
+                        bis.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
