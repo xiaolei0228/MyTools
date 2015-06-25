@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <servlet>
+        <servlet-name>baidu-push</servlet-name>
+        <servlet-class>com.ehome.baidu.push.servlet.PushServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>baidu-push</servlet-name>
+        <url-pattern>/msg</url-pattern>
+    </servlet-mapping>
+
+    <!-- 字符编码Filter 开始 -->
+    <filter>
+        <description>字符编码过滤器</description>
+        <filter-name>SetCharacterEncodingFilter</filter-name>
+        <filter-class>com.ehome.baidu.push.filter.SetCharacterEncodingFilter</filter-class>
+        <init-param>
+            <description>要转成的字符编码</description>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SetCharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- 字符编码Filter 结束 -->
+
+  <display-name>Baidu Push</display-name>
+</web-app>
