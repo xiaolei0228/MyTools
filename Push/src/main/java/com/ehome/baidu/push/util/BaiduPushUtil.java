@@ -24,9 +24,6 @@ import java.util.Map;
 public class BaiduPushUtil {
     static Logger logger = Logger.getLogger(BaiduPushUtil.class);
 
-    private static String apiKey = "jAW8ErGGGwynyH4WZgh76EGx";
-    private static String secretKey = "moprXarAZVRK1M1Q8oGmDAnb0i5q6hSO";
-
     /**
      * 单播推送消息
      *
@@ -36,6 +33,8 @@ public class BaiduPushUtil {
      * @throws PushServerException
      */
     public static void pushSingleDeviceMsg(Map<String, String> msgMap) throws PushClientException, PushServerException {
+        String apiKey = "jAW8ErGGGwynyH4WZgh76EGx";
+        String secretKey = "moprXarAZVRK1M1Q8oGmDAnb0i5q6hSO";
         PushKeyPair pair = new PushKeyPair(apiKey, secretKey);
 
         BaiduPushClient pushClient = new BaiduPushClient(pair, BaiduPushConstants.CHANNEL_REST_URL);
