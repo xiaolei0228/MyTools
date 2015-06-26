@@ -56,12 +56,19 @@ public class SmsUtil {
         } finally {
             postMethod.releaseConnection();
         }
-        if ("0".equals(entitys)) {
-            logger.debug("报告-:发送消息成功，用户数：" + mobile.split(",").length + ":" + msg);
-            return true;
-        } else {
-            logger.error("报告-:发送消息失败，用户数：" + mobile.split(",").length + ":" + msg);
-            return false;
-        }
+
+        if (!"".equals(entitys)) {
+            String[] result = entitys.split("&");
+            String num = result[0].split("=")[1];
+            if (Integer.valueOf(num) > 0) {
+                String succMobile = result[1].split("=")[1];
+                logger.debug("发送消息成功，用户[" + succMobile + "]数量：" + num + ":" + msg);
+                return true;
+            } else {
+                logger.error("发送消息失败，用户[]数量：" + num + ":" + msg);
+                return false;
+            }
+        } else return false;
+
     }
 }
