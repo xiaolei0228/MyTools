@@ -18,7 +18,7 @@ import java.util.Map;
  * @date: 2015-06-25 17:56
  * @desc: ÍÆËÍServlet
  */
-public class PushServlet extends HttpServlet implements Serializable {
+public class MsgServlet extends HttpServlet implements Serializable {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
