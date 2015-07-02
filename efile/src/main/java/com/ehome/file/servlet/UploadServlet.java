@@ -1,6 +1,6 @@
 package com.ehome.file.servlet;
 
-import com.ehome.file.util.FileUploadUtil;
+import com.ehome.file.util.RemoteFileUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +21,7 @@ public class UploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        FileUploadUtil.uploadFile(request);
+        RemoteFileUtil.uploadFile(request);
     }
 
 

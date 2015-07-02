@@ -3,12 +3,15 @@ package com.ehome.file.util;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * trace
@@ -17,8 +20,8 @@ import java.util.List;
  * @date: 2015-07-01 19:22
  * @desc: 文件上传工具类(接收来自httpclient传递过来的文件参数)
  */
-public class FileUploadUtil {
-    static Logger logger = Logger.getLogger(FileUploadUtil.class);
+public class RemoteFileUtil {
+    static Logger logger = Logger.getLogger(RemoteFileUtil.class);
 
     private static String uploadPath = PropertiesFileUtil.getValue("upload.path");
 
@@ -72,6 +75,17 @@ public class FileUploadUtil {
     }
 
     public static void deleteFile(HttpServletRequest request) {
-
+        Map<String, String[]> paramMap = request.getParameterMap();
+        for (Map.Entry<String, String[]> entry : paramMap.entrySet()) {
+            String filePath = entry.getValue()[0];
+            try {
+                File file = new File(uploadPath + File.separator + filePath);
+                if (file.exists()) {
+                    FileUtils.forceDelete(file);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
