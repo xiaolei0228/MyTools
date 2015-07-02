@@ -4,6 +4,25 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
+    <!-- 上传文件servlet -->
+    <servlet>
+        <servlet-name>uploadServlet</servlet-name>
+        <servlet-class>com.ehome.file.servlet.UploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+
+    <!-- 删除文件servlet -->
+    <servlet>
+        <servlet-name>deleteServlet</servlet-name>
+        <servlet-class>com.ehome.file.servlet.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
 
     <!-- 字符编码Filter 开始 -->
     <filter>

@@ -3,7 +3,6 @@ package com.ehome.file.servlet;
 import com.ehome.file.util.FileUploadUtil;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +12,6 @@ import java.io.IOException;
  * @date: 2015-7-1 15:22
  * @desc: 文件上传Servlet
  */
-@WebServlet(name = "upload", urlPatterns = "/upload")
 public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = -8473571070728362228L;
 

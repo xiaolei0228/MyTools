@@ -1,7 +1,6 @@
 package com.ehome.file.servlet;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +13,6 @@ import java.io.IOException;
  * @date: 2015-07-02 09:45
  * @desc: É¾³ýÎÄ¼þµÄservlet
  */
-@WebServlet(name = "delete", urlPatterns = "/upload")
 public class DeleteServlet extends HttpServlet {
     private static final long serialVersionUID = 5826533312047626907L;
 
