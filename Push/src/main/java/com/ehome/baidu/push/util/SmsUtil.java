@@ -48,7 +48,7 @@ public class SmsUtil {
             }
             entitys = postMethod.getResponseBodyAsString();
             if (logger.isDebugEnabled()) {
-                logger.debug("entitys:" + entitys);
+                logger.debug("发送短信结果:" + entitys);
             }
             entitys = entitys.toLowerCase();
         } catch (IOException e) {
