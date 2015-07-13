@@ -21,6 +21,7 @@ public class SmsServlet extends HttpServlet implements Serializable {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("UTF-8");
         String mobile = req.getParameter("mobile");     // 手机号
         String msg = req.getParameter("msg");           // 短信内容
 
