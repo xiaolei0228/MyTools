@@ -14,9 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author: ºÂÏşÀ×
+ * @author: éƒæ™“é›·
  * @date: 2015-06-25 17:56
- * @desc: ÍÆËÍServlet
+ * @desc: ç™¾åº¦æ¨é€Servlet
  */
 public class MsgServlet extends HttpServlet implements Serializable {
 
@@ -25,9 +25,9 @@ public class MsgServlet extends HttpServlet implements Serializable {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String title = req.getParameter("title");               // ±êÌâ
-        String description = req.getParameter("description");  // ÏûÏ¢ÄÚÈİ
-        String channelId = req.getParameter("channelId");      // Ö¸¶¨µÄÉè±¸IdºÅ
+        String title = req.getParameter("title");               // æ ‡é¢˜
+        String description = req.getParameter("description");  // æ¶ˆæ¯å†…å®¹
+        String channelId = req.getParameter("channelId");      // æŒ‡å®šçš„è®¾å¤‡Id
 
         Map<String, String> msgMap = new HashMap<>();
         msgMap.put("title", title);
@@ -38,7 +38,7 @@ public class MsgServlet extends HttpServlet implements Serializable {
             BaiduPushUtil.pushSingleDeviceMsg(msgMap);
         } catch (PushClientException | PushServerException e) {
             e.printStackTrace();
-            resp.getWriter().print("Ïò[" + channelId + "]·¢ËÍÊ§°Ü!");
+            resp.getWriter().print("å‘[" + channelId + "]æ¨é€æ¶ˆæ¯å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œæˆ–ä¼ å€¼å‚æ•°ï¼");
         }
     }
 }

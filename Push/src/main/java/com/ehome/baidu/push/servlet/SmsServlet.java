@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * @author: ºÂÏşÀ×
+ * @author: éƒæ™“é›·
  * @date: 2015-06-26 09:50
- * @desc: ·¢ËÍ¶ÌĞÅServlet
+ * @desc: å‘é€çŸ­ä¿¡Servlet
  */
 public class SmsServlet extends HttpServlet implements Serializable {
 
@@ -22,14 +22,14 @@ public class SmsServlet extends HttpServlet implements Serializable {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
-        String mobile = req.getParameter("mobile");     // ÊÖ»úºÅ
-        String msg = req.getParameter("msg");           // ¶ÌĞÅÄÚÈİ
+        String mobile = req.getParameter("mobile");     // æ‰‹æœºå·
+        String msg = req.getParameter("msg");           // çŸ­ä¿¡å†…å®¹
 
         boolean result = SmsUtil.sendMsg(mobile, msg);
         if (result) {
-            resp.getWriter().print("Ïò[" + mobile + "]·¢ËÍ¶ÌĞÅ³É¹¦^_^");
+            resp.getWriter().print("å‘[" + mobile + "]å‘é€çŸ­ä¿¡æˆåŠŸ^_^");
         } else {
-            resp.getWriter().print("Ïò[" + mobile + "]·¢ËÍ¶ÌĞÅÊ§°Ü£¬Çë¼ì²âÍøÂçÔ­Òò£¡");
+            resp.getWriter().print("å‘[" + mobile + "]å‘é€çŸ­ä¿¡å¤±è´¥ï¼Œè¯·æ£€æµ‹ç½‘ç»œåŸå› ï¼");
         }
     }
 }
