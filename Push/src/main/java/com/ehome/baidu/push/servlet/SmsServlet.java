@@ -27,9 +27,9 @@ public class SmsServlet extends HttpServlet implements Serializable {
 
         boolean result = SmsUtil.sendMsg(mobile, msg);
         if (result) {
-            resp.getWriter().print("向[" + mobile + "]发送短信成功^_^");
+            resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信成功^_^");
         } else {
-            resp.getWriter().print("向[" + mobile + "]发送短信失败，请检测网络原因！");
+            resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信失败，请检测网络原因！");
         }
     }
 }

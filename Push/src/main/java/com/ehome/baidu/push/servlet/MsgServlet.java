@@ -36,9 +36,10 @@ public class MsgServlet extends HttpServlet implements Serializable {
 
         try {
             BaiduPushUtil.pushSingleDeviceMsg(msgMap);
+            resp.getWriter().print("向[" + channelId + "][" + description + "]推送消息成功^_^");
         } catch (PushClientException | PushServerException e) {
             e.printStackTrace();
-            resp.getWriter().print("向[" + channelId + "]推送消息失败，请检查网络或传值参数！");
+            resp.getWriter().print("向[" + channelId + "][" + description + "]推送消息失败，请检查网络或传值参数！");
         }
     }
 }
