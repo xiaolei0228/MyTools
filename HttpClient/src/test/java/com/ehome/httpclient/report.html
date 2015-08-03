@@ -1,0 +1,658 @@
+
+
+
+<html>
+<title>
+</title>
+<head>
+    <script language="javascript" type="text/javascript" src="TableSorter.js"></script>
+    <link href="report.css" rel="stylesheet" type="text/css">
+
+
+
+    <SCRIPT LANGUAGE="javascript">
+        <!--
+
+        //-->
+        function add_event(tr){
+            tr.onmouseover = function(){
+                tr.className += ' hover';
+            };
+            tr.onmouseout = function(){
+                tr.className = tr.className.replace(' hover', '');
+            };
+        }
+
+        function stripe(table) {
+            var trs = table.getElementsByTagName("tr");
+            for(var i=1; i<trs.length; i++){
+                var tr = trs[i];
+                tr.className = i%2 != 0? 'odd' : 'even';
+                add_event(tr);
+            }
+        }
+
+        window.onload = function(){
+            var tables = document.getElementsByTagName('table');
+            for(var i=0; i<tables.length; i++){
+                var table = tables[i];
+                if(table.className == 'datagrid1' || table.className == 'datagrid2'
+                        || table.className == 'datagrid3' || table.className == 'datagrid4'){
+                    stripe(tables[i]);
+                }
+            }
+        }
+    </SCRIPT>
+</head>
+
+<script language=javascript>alert('非法登录'); window.location.href='http://www.dennis.com.cn/';</script>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td height="8"></td>
+    </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td height="35"><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="A7A7A7">
+
+            <tr>
+                <td height="100%" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td height="8"><input type="button" onClick="javascript:AllAreaExcel();" value="导入Excel">
+                            <input type="button" onClick="javascript:AllAreaWord();" value="导入Word"></td>
+                    </tr>
+
+                </table >
+
+                    <div align="center">
+                        <div style="width: 100%;">
+                            <span style="font-size:11px">    </span>
+                            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="datagrid2"  id="tb1">
+                                <tr>
+                                    <th><div align="center">门店编号</div></th>
+                                    <th><div align="center">订单号码</div></th>
+                                    <th><div align="center">厂商编码</div></th>
+                                    <th><div align="center">厂商名称</div></th>
+                                    <th><div align="center">课</div></th>
+                                    <th><div align="center">订单日期</div></th>
+                                    <th><div align="center">到货日期</div></th>
+                                    <th><div align="center">取消日期</div></th>
+                                    <th><div align="center">单据类型</div></th>
+                                    <th><div align="center">是否紧急</div></th>
+                                    <th><div align="center">是否赠品订单</div></th>
+                                    <th><div align="center">行项目序号</div></th>
+                                    <th><div align="center">商品编码</div></th>
+                                    <th><div align="center">商品条码</div></th>
+                                    <th><div align="center">商品子码</div></th>
+                                    <th><div align="center">商品名称</div></th>
+                                    <th><div align="center">规格</div></th>
+                                    <th><div align="center">订货箱数</div></th>
+                                    <th><div align="center">包装入数</div></th>
+                                    <th><div align="center">订货零数</div></th>
+                                    <th><div align="center">订货数量</div></th>
+                                    <th><div align="center">赠品数量</div></th>
+                                    <th><div align="center">税率</div></th>
+                                    <th><div align="center">含税单价</div></th>
+                                    <th><div align="center">含税金额</div></th>
+                                    <th><div align="center">未税单价</div></th>
+                                    <th><div align="center">未税金额</div></th>
+                                    <th><div align="center">备注信息</div></th>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">1</td>
+                                    <td align="center">3265291</td>
+                                    <td align="center" style="mso-number-format:'\@';">6944360619615</td>
+                                    <td align="center">001</td>
+                                    <td>沃马侦查机片积木143 C9691</td>
+                                    <td align="center"></td>
+                                    <td align="center">1</td>
+                                    <td align="right">12</td>
+                                    <td align="right">0</td>
+                                    <td align="right">12</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">16.5</td>
+                                    <td align="right">198</td>
+                                    <td align="right">14.1</td>
+                                    <td align="right">169.2</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">2</td>
+                                    <td align="center">3265321</td>
+                                    <td align="center" style="mso-number-format:'\@';">6944360619813</td>
+                                    <td align="center">001</td>
+                                    <td>沃马防弹战车积木129片 J5611</td>
+                                    <td align="center"></td>
+                                    <td align="center">1</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">19</td>
+                                    <td align="right">114</td>
+                                    <td align="right">16.24</td>
+                                    <td align="right">97.44</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">3</td>
+                                    <td align="center">3471036</td>
+                                    <td align="center" style="mso-number-format:'\@';">6944181635061</td>
+                                    <td align="center">001</td>
+                                    <td>力利32506小型清洁车</td>
+                                    <td align="center">1*1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">18</td>
+                                    <td align="right">108</td>
+                                    <td align="right">15.38</td>
+                                    <td align="right">92.31</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">4</td>
+                                    <td align="center">3649213</td>
+                                    <td align="center" style="mso-number-format:'\@';">6956658400911</td>
+                                    <td align="center">001</td>
+                                    <td>远大066智能汤姆猫</td>
+                                    <td align="center">1*6*24</td>
+                                    <td align="center">1</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">34.5</td>
+                                    <td align="right">207</td>
+                                    <td align="right">29.49</td>
+                                    <td align="right">176.92</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">5</td>
+                                    <td align="center">3737361</td>
+                                    <td align="center" style="mso-number-format:'\@';">6942455943690</td>
+                                    <td align="center">001</td>
+                                    <td>五星37938熊出没游戏机</td>
+                                    <td align="center">1*1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">46.5</td>
+                                    <td align="right">186</td>
+                                    <td align="right">39.74</td>
+                                    <td align="right">158.97</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">6</td>
+                                    <td align="center">3755969</td>
+                                    <td align="center" style="mso-number-format:'\@';">6949987304975</td>
+                                    <td align="center">001</td>
+                                    <td>三佳168-6房子积木</td>
+                                    <td align="center">1*1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">21.5</td>
+                                    <td align="right">129</td>
+                                    <td align="right">18.38</td>
+                                    <td align="right">110.26</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">7</td>
+                                    <td align="center">3919446</td>
+                                    <td align="center" style="mso-number-format:'\@';">6956423200241</td>
+                                    <td align="center">001</td>
+                                    <td>泰嘉3368ABC方向盘遥控音乐工程车</td>
+                                    <td align="center">1*1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">40.2</td>
+                                    <td align="right">160.8</td>
+                                    <td align="right">34.36</td>
+                                    <td align="right">137.44</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">8</td>
+                                    <td align="center">4032717</td>
+                                    <td align="center" style="mso-number-format:'\@';">6957644101065</td>
+                                    <td align="center">001</td>
+                                    <td>彩虹900103/4/6/7小花猫摇铃</td>
+                                    <td align="center">1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">7</td>
+                                    <td align="right">42</td>
+                                    <td align="right">5.98</td>
+                                    <td align="right">35.9</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">9</td>
+                                    <td align="center">4050568</td>
+                                    <td align="center" style="mso-number-format:'\@';">6939511400105</td>
+                                    <td align="center">001</td>
+                                    <td>米奇大张贴画</td>
+                                    <td align="center">1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">10</td>
+                                    <td align="right">0</td>
+                                    <td align="right">10</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">4.2</td>
+                                    <td align="right">42</td>
+                                    <td align="right">3.59</td>
+                                    <td align="right">35.9</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">10</td>
+                                    <td align="center">4070351</td>
+                                    <td align="center" style="mso-number-format:'\@';">6949987305163</td>
+                                    <td align="center">001</td>
+                                    <td>三佳5016猪猪侠积木</td>
+                                    <td align="center">1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">21</td>
+                                    <td align="right">84</td>
+                                    <td align="right">17.95</td>
+                                    <td align="right">71.79</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">11</td>
+                                    <td align="center">4070757</td>
+                                    <td align="center" style="mso-number-format:'\@';">6944181635337</td>
+                                    <td align="center">001</td>
+                                    <td>力利32533惯性铲车</td>
+                                    <td align="center">1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">20.9</td>
+                                    <td align="right">83.6</td>
+                                    <td align="right">17.86</td>
+                                    <td align="right">71.45</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">12</td>
+                                    <td align="center">4081517</td>
+                                    <td align="center" style="mso-number-format:'\@';">6943414917028</td>
+                                    <td align="center">001</td>
+                                    <td>幻乐童星雷蒙熊99969神射手</td>
+                                    <td align="center">1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">4</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">10.5</td>
+                                    <td align="right">42</td>
+                                    <td align="right">8.97</td>
+                                    <td align="right">35.9</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">13</td>
+                                    <td align="center">4097075</td>
+                                    <td align="center" style="mso-number-format:'\@';">6941499619127</td>
+                                    <td align="center">001</td>
+                                    <td>迪士尼冰雪奇缘拼图系列（100片）</td>
+                                    <td align="center">100片</td>
+                                    <td align="center">1</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">6</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">19.8</td>
+                                    <td align="right">118.8</td>
+                                    <td align="right">16.92</td>
+                                    <td align="right">101.54</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">14</td>
+                                    <td align="center">4109266</td>
+                                    <td align="center" style="mso-number-format:'\@';">6921406900012</td>
+                                    <td align="center">001</td>
+                                    <td>龙璟02000奖励贴纸</td>
+                                    <td align="center">1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">24</td>
+                                    <td align="right">0</td>
+                                    <td align="right">24</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">4.85</td>
+                                    <td align="right">116.4</td>
+                                    <td align="right">4.15</td>
+                                    <td align="right">99.49</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">15</td>
+                                    <td align="center">4109334</td>
+                                    <td align="center" style="mso-number-format:'\@';">6921406900302</td>
+                                    <td align="center">001</td>
+                                    <td>龙璟5001立体动物贴纸</td>
+                                    <td align="center">1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">24</td>
+                                    <td align="right">0</td>
+                                    <td align="right">24</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">5.6</td>
+                                    <td align="right">134.4</td>
+                                    <td align="right">4.79</td>
+                                    <td align="right">114.87</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">2006</td>
+                                    <td align="center" style="mso-number-format:'\@';">000036127039</td>
+                                    <td align="center">27001264</td>
+                                    <td align="center">郑州从越商贸有限公司</td>
+                                    <td align="center">32</td>
+                                    <td align="center">20150802</td>
+                                    <td align="center">20150810</td>
+                                    <td align="center">20150825</td>
+                                    <td align="center">1</td>
+                                    <td align="center">0</td>
+                                    <td align="center">正常单子</td>
+                                    <td align="center">16</td>
+                                    <td align="center">4129998</td>
+                                    <td align="center" style="mso-number-format:'\@';">6943215300463</td>
+                                    <td align="center">001</td>
+                                    <td>咏声YS8801A/E猪猪侠五灵锁（高频混装）</td>
+                                    <td align="center">1</td>
+                                    <td align="center">1</td>
+                                    <td align="right">3</td>
+                                    <td align="right">0</td>
+                                    <td align="right">3</td>
+                                    <td align="right">0</td>
+                                    <td align="right">0.17</td>
+                                    <td align="right">41.5</td>
+                                    <td align="right">124.5</td>
+                                    <td align="right">35.47</td>
+                                    <td align="right">106.41</td>
+                                    <td align="right">中转订单</td>
+                                </tr>
+
+                            </table></td>
+            </tr>
+        </table></td>
+    </tr>
+</table>
+</body>
+<script language="javascript" type="text/javascript">
+    new TableSorter("tb1");
+    {
+        alert("table is sorted by " + c.innerHTML + " " + (t ? "Asc" : "Desc"));
+    }
+    //导入Excel
+    function AllAreaExcel()
+    {
+
+        try{
+            var oXL = new ActiveXObject("Excel.Application");
+        }
+        catch(e)
+        {
+            alert("无法调用Office对象，请确保您的机器已安装了Office并已将本系统的站点名加入到IE的信任站点列表中！\n或者设置本地Internet选项-->安全-->自定义级别--> 对没有标记安全级别的ActiveX控件进行初始化设为启用！");
+            return;
+        }
+        var oWB = oXL.Workbooks.Add();
+        var oSheet = oWB.ActiveSheet;
+        var sel=document.body.createTextRange();
+        sel.moveToElementText(tb1);
+        sel.select();
+        sel.execCommand("Copy");
+        oSheet.Paste();
+        oXL.Visible = true;
+    }
+    //指定页面区域内容导入Word
+    function AllAreaWord()
+    {
+        try{
+            var oWD = new ActiveXObject("Word.Application");
+        }
+        catch(e)
+        {
+            alert("无法调用Office对象，请确保您的机器已安装了Office并已将本系统的站点名加入到IE的信任站点列表中！\n或者设置本地Internet选项-->安全-->自定义级别--> 对没有标记安全级别的ActiveX控件进行初始化设为启用！");
+            return;
+        }
+        var oDC = oWD.Documents.Add("",0,1);
+        var oRange =oDC.Range(0,1);
+        var sel = document.body.createTextRange();
+        sel.moveToElementText(tb1);
+        sel.select();
+        sel.execCommand("Copy");
+        oRange.Paste();
+        oWD.Application.Visible = true;
+//window.close();
+    }
+</script>
+<div id=showtable ="width: 500px;"></div>
+<script language=javascript>
+    rows=tb1.getElementsByTagName("tr").length;
+    rows=rows-1;
+    document.all.showtable.innerHTML ="<table ><tr><td align='right'>共计"+rows+"记录</td><tr></table>"
+</script>
+</html>
