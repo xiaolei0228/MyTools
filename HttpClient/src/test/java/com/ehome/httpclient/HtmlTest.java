@@ -18,9 +18,6 @@ import java.util.List;
  */
 public class HtmlTest {
 
-    String startStr = "约仓单号</font></b></td>" + "</tr>";
-    String endStr = "<tr>\n" + "  \t\t\t<td  bgcolor=\"whitesmoke\" valign=\"top\" align=\"center\"><font face=\"宋体\" size=\"2\" color=\"midnightblue\">合计：</font></td>";
-
     @Test
     public void createHtml()throws Exception{
         String[] params = {"27001264", "93550016"};
