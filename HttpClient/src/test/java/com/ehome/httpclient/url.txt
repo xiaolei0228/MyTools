@@ -1,0 +1,1 @@
+http://218.28.18.2:9090/scm_sup2_poh_print.asp?mode=search&tranyears=2015&tranmonths=07&trandays=01&tranyeare=2015&tranmonthe=07&trandaye=31&storecode=all&whichpage=1

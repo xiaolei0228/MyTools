@@ -21,7 +21,15 @@ public class Html {
     /*登录页面*/
     private static final String loginURL = "http://218.28.18.2:9090/scm_login.asp";
     /*订单打印主页面*/
-    private static final String forwardURL = "http://218.28.18.2:9090/scm_sup2_poh_print.asp";
+    private static String forwardURL = "http://218.28.18.2:9090/scm_sup2_poh_print.asp";
+
+    public static String getForwardURL() {
+        return forwardURL;
+    }
+
+    public static void setForwardURL(String forwardURL) {
+        Html.forwardURL = forwardURL;
+    }
 
     public static URL url;
     public static HttpURLConnection conn;
