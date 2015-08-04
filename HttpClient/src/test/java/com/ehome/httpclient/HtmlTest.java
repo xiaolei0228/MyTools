@@ -7,8 +7,9 @@ import org.jsoup.select.Elements;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * MyTools
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class HtmlTest {
 
-    private String newForwardUrl = "http://218.28.18.2:9090/scm_sup2_poh_print.asp";
+    private String baseUrl = "http://218.28.18.2:9090/scm_sup2_poh_print.asp";
 
     private String mode = "search";
     private String tranyears = "2015";
@@ -34,31 +35,36 @@ public class HtmlTest {
 
     @Test
     public void createHtml() throws Exception {
-        order();
+        Map<String, String> params = new HashMap<>();
+        params.put("userName", "27001264");
+        params.put("password", "93550016");
+        params.put("mode", "search");
+        params.put("tranyears", "2015");
+        params.put("tranmonths", "08");
+        params.put("trandays", "01");
+        params.put("tranyeare", "2015");
+        params.put("tranmonthe", "08");
+        params.put("trandaye", "31");
+        params.put("storecode", "all");
+
+        int page = getTotalPage(params);
+        String[] loginPass = {params.get("userName"), params.get("password")};
+        for (int i = 1; i <= page; i++) {
+            params.put("whichpage", i + "");
+            String forwardUrl = makeUrl(params);
+            Html.setForwardURL(forwardUrl);
+            String html = Html.createHtml(loginPass);
+            Document doc = Jsoup.parse(html);
+            order(doc);
+            //System.out.println("_________________________________________________________________________________________________________________________________________________________________");
+        }
     }
 
-    private void order() throws Exception {
-        newForwardUrl += "?mode=" + mode + "&tranyears=" + tranyears + "&tranmonths=" + tranmonths + "&trandays=" + trandays +
-                "&tranyeare=" + tranyeare + "&tranmonthe=" + tranmonthe + "&trandaye=" + trandaye + "&storecode=" + storecode +
-                "&whichpage" + whichpage;
-        Html.setForwardURL(newForwardUrl);
-
-        String[] params = {"27001264", "93550016"};
-        String html = Html.createHtml(params);
-        Document doc = Jsoup.parse(html);
-
-        // 总页数
-        int page;
-        Elements pageElements = doc.select("select[name=whichpage]");
-        for (Element elm : pageElements) {
-            Element pageElem = elm.child(elm.children().size() - 1);
-            page = Integer.valueOf(pageElem.text());
-        }
-
+    private List<Order> order(Document document) throws Exception {
+        List<Order> orderList = new ArrayList<>();
         // 订单元素集合
-        Elements orderElements = doc.select("td[bgcolor=black]").select("table").select("tr");
+        Elements orderElements = document.select("td[bgcolor=black]").select("table").select("tr");
         if (orderElements != null && orderElements.size() > 0) {
-            List<Order> orderList = new ArrayList<>();
             for (int i = 2; i < orderElements.size() - 2; i++) {
                 Element element = orderElements.get(i);
                 Elements ets = element.children();
@@ -74,14 +80,13 @@ public class HtmlTest {
                     orderList.add(order);
                 }
             }
-
-            orderItem(orderList);
+            getOrderItems(orderList);
         }
+        return orderList;
     }
 
-
-    private void orderItem(List<Order> orderList) throws Exception {
-        List<OrderReport> reportList = new ArrayList<>();   // 报表对象列表
+    private List<OrderItem> getOrderItems(List<Order> orderList) throws Exception {
+        List<OrderItem> orderItems = new ArrayList<>();   // 报表对象列表
         for (Order order : orderList) {
             //System.out.println(order.getDeliveryPlace() + "\t" + order.getOrderDate() + "\t" + order.getOrderNo() + "\t" + order.getDeliveryDate() + "\t" + order.getOrderType() + "\t" + order.getRelatedDate() + "\t" + order.getOrderAmount());
             String forwardUrl = "http://218.28.18.2:9090/report.asp?pono=" + order.getOrderNo() + "&strSCMSupName=%D6%A3%D6%DD%B4%D3%D4%BD%C9%CC%C3%B3%D3%D0%CF%DE%B9%AB%CB%BE";
@@ -92,9 +97,9 @@ public class HtmlTest {
             Elements children = rptEmt.select("tr");
             children.remove(0);
 
-            OrderReport report;
+            OrderItem report;
             for (Element child : children) {
-                report = new OrderReport();
+                report = new OrderItem();
                 Elements son = child.children();
                 report.setStoreNo(son.get(0).text());
                 report.setOrderNo(son.get(1).text());
@@ -123,12 +128,12 @@ public class HtmlTest {
                 report.setUnTaxPrice(Double.valueOf(son.get(25).text()));
                 report.setUnTaxAmount(Double.valueOf(son.get(26).text()));
                 report.setRemark(son.get(27).text());
-                reportList.add(report);
+                orderItems.add(report);
             }
         }
 
         // 要导出的报表对象列表
-        for (OrderReport rpt : reportList) {
+        for (OrderItem rpt : orderItems) {
             System.out.println(
                     rpt.getStoreNo() + "\t" + rpt.getOrderNo() + "\t" + rpt.getManufacturerCode() + "\t" + rpt.getManufacturerName() + "\t" + rpt.getTax() + "\t" +
                             rpt.getOrderDate() + "\t" + rpt.getArrivalDate() + "\t" + rpt.getCancelDate() + "\t" + rpt.getOrderType() + "\t" + rpt.getIsUrgent() + "\t" +
@@ -137,6 +142,34 @@ public class HtmlTest {
                             rpt.getGiftsNumber() + "\t" + rpt.getTaxRate() + "\t" + rpt.getTaxPrice() + "\t" + rpt.getTaxAmount() + "\t" + rpt.getUnTaxPrice() + "\t" +
                             rpt.getUnTaxAmount() + "\t" + rpt.getRemark());
         }
-        System.out.println("------\n" + reportList.size() + "个");
+        System.out.println("------\n" + orderItems.size() + "个");
+
+        return orderItems;
+    }
+
+    private int getTotalPage(Map<String, String> params) throws Exception {
+        String forwardUrl = makeUrl(params);
+        Html.setForwardURL(forwardUrl);
+
+        String[] loginPass = {params.get("userName"), params.get("password")};
+        String html = Html.createHtml(loginPass);
+        Document doc = Jsoup.parse(html);
+
+        // 总页数
+        int page = 0;
+        Elements pageElements = doc.select("select[name=whichpage]");
+        for (Element elm : pageElements) {
+            Element pageElem = elm.child(elm.children().size() - 1);
+            page = Integer.valueOf(pageElem.text());
+        }
+        return page == 0 ? 1 : page;
+    }
+
+    private String makeUrl(Map<String, String> params) {
+        String forwardUrl = baseUrl + "?mode=" + params.get("mode") +
+                "&tranyears=" + params.get("tranyears") + "&tranmonths=" + params.get("tranmonths") + "&trandays=" + params.get("trandays") +
+                "&tranyeare=" + params.get("tranyeare") + "&tranmonthe=" + params.get("tranmonthe") + "&trandaye=" + params.get("trandaye") +
+                "&storecode=" + params.get("storecode") + "&whichpage=" + params.get("whichpage");
+        return forwardUrl;
     }
 }

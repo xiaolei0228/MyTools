@@ -4,9 +4,9 @@ package com.ehome.httpclient;
  *
  * @author: haoxiaolei
  * @date: 2015-08-03 17:41
- * @desc: 订单报表
+ * @desc: 订单明细，即：订单报表
  */
-public class OrderReport {
+public class OrderItem {
     /*门店编号*/
     private String storeNo;
     /*订单号码*/
