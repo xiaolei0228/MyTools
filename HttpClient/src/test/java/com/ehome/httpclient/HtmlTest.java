@@ -22,17 +22,6 @@ public class HtmlTest {
 
     private String baseUrl = "http://218.28.18.2:9090/scm_sup2_poh_print.asp";
 
-    private String mode = "search";
-    private String tranyears = "2015";
-    private String tranmonths = "01";
-    private String trandays = "01";
-    private String tranyeare = "2015";
-    private String tranmonthe = "07";
-    private String trandaye = "31";
-    private String storecode = "all";
-    private String whichpage = "1";
-
-
     @Test
     public void createHtml() throws Exception {
         Map<String, String> params = new HashMap<>();
@@ -91,7 +80,7 @@ public class HtmlTest {
             //System.out.println(order.getDeliveryPlace() + "\t" + order.getOrderDate() + "\t" + order.getOrderNo() + "\t" + order.getDeliveryDate() + "\t" + order.getOrderType() + "\t" + order.getRelatedDate() + "\t" + order.getOrderAmount());
             String forwardUrl = "http://218.28.18.2:9090/report.asp?pono=" + order.getOrderNo() + "&strSCMSupName=%D6%A3%D6%DD%B4%D3%D4%BD%C9%CC%C3%B3%D3%D0%CF%DE%B9%AB%CB%BE";
             String reportHtml = Html.forwardHtml(Html.conn, Html.url, forwardUrl);
-            Html.write(reportHtml, "g:/hidden_file/desk/reportHtml.html");
+            Html.write(reportHtml, "d:/hidden_file/desk/reportHtml.html");
             Document rptDoc = Jsoup.parse(reportHtml);
             Element rptEmt = rptDoc.getElementById("tb1");
             Elements children = rptEmt.select("tr");

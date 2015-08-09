@@ -101,7 +101,7 @@ public class Html {
             content += "\n" + line;
         }
         //IOUtils.write(result, new FileOutputStream("d:/index.html"),"GBK");
-        write(content, "g:/hidden_file/desk/order_print.html");
+        write(content, "d:/hidden_file/desk/order_print.html");
         buffReader.close();
         conn.disconnect();
         return content;
