@@ -22,14 +22,20 @@ public class SmsServlet extends HttpServlet implements Serializable {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
-        String mobile = req.getParameter("mobile");     // 手机号
-        String msg = req.getParameter("msg");           // 短信内容
+        String action = req.getParameter("action");
+        if ("send".equals(action)) {
+            String mobile = req.getParameter("mobile");     // 手机号
+            String msg = req.getParameter("msg");           // 短信内容
 
-        boolean result = SmsUtil.sendMsg(mobile, msg);
-        if (result) {
-            resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信成功^_^");
-        } else {
-            resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信失败，请检测网络原因！");
+            boolean result = SmsUtil.sendMsg(mobile, msg);
+            if (result) {
+                resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信成功^_^");
+            } else {
+                resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信失败，请检测网络原因！");
+            }
+        } else if ("receive".equals(action)) {
+            String receiveMsg = SmsUtil.receiveMsg();
+            resp.getWriter().print(receiveMsg);
         }
     }
 }

@@ -69,6 +69,45 @@ public class SmsUtil {
                 return false;
             }
         } else return false;
+    }
 
+    /**
+     * 接收短信回复
+     *
+     * @return 回复的短信内容
+     */
+    public static String receiveMsg() {
+        String receiveMsg = "";
+        HttpClient httpClient = new HttpClient();
+        PostMethod postMethod = new PostMethod("http://203.81.21.34/send/readsms.asp");
+        postMethod.setParameter("name", "zzncp");
+        postMethod.setParameter("pwd", "zzncp890");
+        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(1000 * 60); // 设置超时60s
+        postMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=gbk");
+        String entitys = "";
+        try {
+            int statusCode = httpClient.executeMethod(postMethod);
+            if (statusCode != HttpStatus.SC_OK) {
+                logger.error("接收短信回复失败: " + postMethod.getStatusLine());
+            }
+            entitys = postMethod.getResponseBodyAsString();
+            // id=48522257&err=成功&src=&msg=好&dst=177411835122&time=201508311558
+            // id=0&err=没有未读取的短信
+            receiveMsg = new String(entitys.getBytes("ISO-8859-1"), "GBK");
+            logger.info("接收到短信平台返回的内容:" + receiveMsg);
+            entitys = entitys.toLowerCase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            postMethod.releaseConnection();
+        }
+        String[] rs = entitys.split("&");
+        if ("err=成功".equals(rs[1])) {
+            logger.info("报告-:接收短信回复成功.");
+        } else {
+            logger.error("报告-:接收短信回复失败.");
+        }
+
+        return receiveMsg;
     }
 }
