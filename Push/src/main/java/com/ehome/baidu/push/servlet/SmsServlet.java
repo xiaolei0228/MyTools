@@ -26,13 +26,13 @@ public class SmsServlet extends HttpServlet implements Serializable {
         if ("send".equals(action)) {
             String mobile = req.getParameter("mobile");     // 手机号
             String msg = req.getParameter("msg");           // 短信内容
-            // 短信内容字数多于60个字就分开发
-            double divider = msg.length() / 60d;
-            int split = msg.length() / 60;
+            // 短信内容字数多于63个字就分开发
+            double divider = msg.length() / 63d;
+            int split = msg.length() / 63;
             int timeNum = divider > 1 ? split + 1 : 1;  // 分几条短信发
             String splitMsg;
             for (int i = 0; i < timeNum; i++) {
-                splitMsg = msg.substring(i * 60, ((i * 60 + 60) > msg.length() ? msg.length() : (i * 60 + 60)));
+                splitMsg = msg.substring(i * 63, ((i * 63 + 63) > msg.length() ? msg.length() : (i * 63 + 63)));
                 boolean result = SmsUtil.sendMsg(mobile, splitMsg);
                 if (result) {
                     resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信成功^_^");
