@@ -32,6 +32,7 @@ public class SmsServlet extends HttpServlet implements Serializable {
                 int split = msg.length() / 60;
                 int timeNum = yu > 0 ? split + 1 : split;   // 分几条短信发
                 for (int i = 0; i < timeNum; i++) {
+                    msg = msg.substring(i * 60, i * 60 + 60);
                     boolean result = SmsUtil.sendMsg(mobile, msg);
                     if (result) {
                         resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信成功^_^");
