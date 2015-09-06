@@ -26,12 +26,19 @@ public class SmsServlet extends HttpServlet implements Serializable {
         if ("send".equals(action)) {
             String mobile = req.getParameter("mobile");     // 手机号
             String msg = req.getParameter("msg");           // 短信内容
-
-            boolean result = SmsUtil.sendMsg(mobile, msg);
-            if (result) {
-                resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信成功^_^");
-            } else {
-                resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信失败，请检测网络原因！");
+            // 短信内容字数多于60个字就分开发
+            if (msg.length() > 60) {
+                int yu = msg.length() % 60;
+                int split = msg.length() / 60;
+                int timeNum = yu > 0 ? split + 1 : split;   // 分几条短信发
+                for (int i = 0; i < timeNum; i++) {
+                    boolean result = SmsUtil.sendMsg(mobile, msg);
+                    if (result) {
+                        resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信成功^_^");
+                    } else {
+                        resp.getWriter().print("向[" + mobile + "][" + msg + "]发送短信失败，请检测网络原因！");
+                    }
+                }
             }
         } else if ("receive".equals(action)) {
             String receiveMsg = SmsUtil.receiveMsg();
