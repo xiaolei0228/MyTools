@@ -30,9 +30,7 @@ public class SmsUtil {
         }
 
         HttpClient httpClient = new HttpClient();
-        PostMethod postMethod = new PostMethod("http://203.81.21.34/send/gsend.asp");
-        postMethod.setParameter("name", "zzncp");
-        postMethod.setParameter("pwd", "zzncp890");
+        
         postMethod.setParameter("dst", mobile);
         postMethod.setParameter("longmsg", "1");
         postMethod.setParameter("sno", "");
