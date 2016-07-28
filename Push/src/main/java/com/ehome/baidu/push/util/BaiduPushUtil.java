@@ -33,8 +33,8 @@ public class BaiduPushUtil {
      * @throws PushServerException
      */
     public static void pushSingleDeviceMsg(Map<String, String> msgMap) throws PushClientException, PushServerException {
-        String apiKey = "jAW8ErGGGwynyH4WZgh76EGx";
-        String secretKey = "moprXarAZVRK1M1Q8oGmDAnb0i5q6hSO";
+        String apiKey = "btKNLhRHV7gqt5PdGjnRQ233";
+        String secretKey = "9v8BXCuwBEalLwkziLrKPhGWWFmDRMDo";
         PushKeyPair pair = new PushKeyPair(apiKey, secretKey);
 
         BaiduPushClient pushClient = new BaiduPushClient(pair, BaiduPushConstants.CHANNEL_REST_URL);
