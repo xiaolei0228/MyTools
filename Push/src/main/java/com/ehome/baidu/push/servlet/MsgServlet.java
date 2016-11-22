@@ -25,7 +25,7 @@ public class MsgServlet extends HttpServlet implements Serializable {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String title = req.getParameter("title");               // 标题
+        String title = req.getParameter("title");              // 标题
         String description = req.getParameter("description");  // 消息内容
         String channelId = req.getParameter("channelId");      // 指定的设备Id
 
@@ -34,6 +34,7 @@ public class MsgServlet extends HttpServlet implements Serializable {
         msgMap.put("description", description);
         msgMap.put("channelId", channelId);
 
+        System.out.println("channelId:::::" + channelId);
         try {
             BaiduPushUtil.pushSingleDeviceMsg(msgMap);
             resp.getWriter().print("向[" + channelId + "][" + description + "]推送消息成功^_^");

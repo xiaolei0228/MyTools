@@ -18,7 +18,7 @@ public class BaiduPushUtilsTest {
     @Test
     public void push() throws PushClientException, PushServerException {
         Map<String, String> pushMap = new HashMap<>();
-        pushMap.put("channelId", "3806776883274763272");
+        pushMap.put("channelId", "4309651502633916384");
         pushMap.put("title", "我是消息标题");
         pushMap.put("description", "我是测试推送消息的内容......");
 

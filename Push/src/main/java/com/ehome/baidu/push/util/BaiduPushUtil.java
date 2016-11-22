@@ -22,7 +22,6 @@ import java.util.Map;
  * @desc: 百度推送工具类
  */
 public class BaiduPushUtil {
-    static Logger logger = Logger.getLogger(BaiduPushUtil.class);
 
     /**
      * 单播推送消息
@@ -61,29 +60,25 @@ public class BaiduPushUtil {
             //JSONObject jsonCustormCont = new JSONObject();
             //jsonCustormCont.put("key", "value"); //自定义内容，key-value
             //notification.put("custom_content", jsonCustormCont);
+            String message = JSONObject.toJSONString(msgMap);
+            System.out.println(message);
 
             PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest().
                     addChannelId(msgMap.get("channelId")).
                     addMsgExpires(3600 * 24).   // message有效时间
-                    addMessageType(1).          // 1：通知,0:透传消息. 默认为0 注：IOS只有通知.
-                    addMessage(notification.toString()).
+                    addMessageType(0).          // 1：通知,0:透传消息. 默认为0 注：IOS只有通知.
+                    addMessage(message).
                     addDeviceType(3);           // deviceType => 3:android, 4:ios
             // 5. http request
             PushMsgToSingleDeviceResponse response = pushClient.pushMsgToSingleDevice(request);
             // Http请求结果解析打印
-            logger.debug("msgId: " + response.getMsgId() + ",sendTime: " + response.getSendTime());
-        } catch (PushClientException e) {
+            System.out.println("msgId: " + response.getMsgId() + ",sendTime: " + response.getSendTime());
+        } catch (PushClientException | PushServerException e) {
             //ERROROPTTYPE 用于设置异常的处理方式 -- 抛出异常和捕获异常,'true' 表示抛出, 'false' 表示捕获。
             if (BaiduPushConstants.ERROROPTTYPE) {
                 throw e;
             } else {
                 e.printStackTrace();
-            }
-        } catch (PushServerException e) {
-            if (BaiduPushConstants.ERROROPTTYPE) {
-                throw e;
-            } else {
-                logger.error(String.format("requestId: %d, errorCode: %d, errorMessage: %s", e.getRequestId(), e.getErrorCode(), e.getErrorMsg() + " 请检测channelId是否真的存在!"));
             }
         }
     }
